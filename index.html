@@ -1,0 +1,970 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diwali | Made by Sampreet Singh</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --gold: #ffd778;
+    --gold2: #ffae35;
+    --dark: #080512;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: var(--dark);
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    overflow: hidden;
+}
+
+button { font-family: inherit; }
+
+#sky {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 5;
+}
+
+/* INTRO */
+
+#intro {
+    position: fixed;
+    inset: 0;
+    z-index: 10;
+    background:
+      radial-gradient(ellipse at 50% 100%, #49204c 0%, transparent 55%),
+      linear-gradient(180deg, #080512, #160c2b 65%, #26102c);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    transition: opacity 1.5s, visibility 1.5s;
+}
+
+#intro.hide {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.intro-stars {
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(#fff 1px, transparent 1px),
+      radial-gradient(#ffd778 1px, transparent 1px);
+    background-size: 75px 75px, 130px 130px;
+    background-position: 0 0, 35px 45px;
+    animation: starsMove 15s linear infinite;
+    opacity: .55;
+}
+
+@keyframes starsMove {
+    to { background-position: 0 150px, 35px 195px; }
+}
+
+/* CREATOR CREDIT */
+
+.creator-credit {
+    position: absolute;
+    z-index: 4;
+    text-align: center;
+    width: 95%;
+    padding: 15px;
+    animation: creatorReveal 4s ease forwards;
+    pointer-events: none;
+}
+
+.creator-credit span {
+    display: block;
+    font-size: 9px;
+    letter-spacing: 4px;
+    color: #d8b8ff;
+    margin-bottom: 20px;
+}
+
+.creator-credit h2 {
+    font-family: 'Cinzel', serif;
+    font-size: 17px;
+    letter-spacing: 7px;
+    color: #fff1c2;
+}
+
+.creator-credit h1 {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(27px, 7vw, 48px);
+    letter-spacing: 4px;
+    margin-top: 15px;
+    background: linear-gradient(90deg, #fff4c2, #ffc04d, #fff4c2);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    filter: drop-shadow(0 0 20px #ffbd5266);
+}
+
+.credit-line {
+    height: 1px;
+    width: 0;
+    background: gold;
+    margin: 22px auto;
+    box-shadow: 0 0 15px gold;
+    animation: lineReveal 1.5s 1s forwards;
+}
+
+@keyframes creatorReveal {
+    0% { opacity: 0; transform: translateY(20px); }
+    15%, 75% { opacity: 1; transform: translateY(0); }
+    100% { opacity: 0; transform: translateY(-20px); }
+}
+
+@keyframes lineReveal {
+    to { width: 180px; }
+}
+
+/* COUNTDOWN */
+
+.intro-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    opacity: 0;
+    animation: introAfterCredit 1s 4s both;
+}
+
+@keyframes introAfterCredit {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.intro-label {
+    color: var(--gold);
+    letter-spacing: 7px;
+    font-size: 10px;
+    margin-bottom: 28px;
+}
+
+#countdown {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(85px, 20vw, 160px);
+    color: var(--gold);
+    text-shadow: 0 0 30px #ffae35, 0 0 90px #ffae35;
+    opacity: 0;
+    transform: scale(.3);
+}
+
+#countdown.show {
+    animation: countPop .9s ease forwards;
+}
+
+@keyframes countPop {
+    0% { opacity: 0; transform: scale(.3); }
+    50% { opacity: 1; transform: scale(1.2); }
+    100% { opacity: 1; transform: scale(1); }
+}
+
+#introText {
+    color: #f5d9ff;
+    font-size: 13px;
+    letter-spacing: 3px;
+    margin-top: 15px;
+}
+
+.start-btn {
+    margin-top: 35px;
+    padding: 14px 35px;
+    border: 1px solid var(--gold);
+    border-radius: 40px;
+    background: linear-gradient(135deg, #ffdb84, #d68b28);
+    color: #25102b;
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 2px;
+    cursor: pointer;
+    box-shadow: 0 0 35px #ffb52c55;
+    transition: .3s;
+}
+
+.start-btn:hover {
+    transform: scale(1.08);
+    box-shadow: 0 0 55px #ffbd55;
+}
+
+/* REAL CSS DIWALI ROCKET */
+
+#rocket {
+    position: absolute;
+    bottom: -150px;
+    left: 50%;
+    width: 55px;
+    height: 190px;
+    transform: translateX(-50%);
+    opacity: 0;
+    z-index: 3;
+    pointer-events: none;
+}
+
+.rocket-body {
+    position: absolute;
+    top: 5px;
+    left: 15px;
+    width: 25px;
+    height: 75px;
+    border-radius: 50% 50% 8px 8px;
+    background: linear-gradient(
+        90deg,
+        #a34c12,
+        #ffe49a 40%,
+        #d88721 75%,
+        #7d310c
+    );
+    box-shadow: 0 0 15px #ffb52c;
+}
+
+.rocket-nose {
+    position: absolute;
+    top: -19px;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-left: 12.5px solid transparent;
+    border-right: 12.5px solid transparent;
+    border-bottom: 20px solid #ffcf65;
+    filter: drop-shadow(0 0 8px orange);
+}
+
+.rocket-body::before {
+    content: "";
+    position: absolute;
+    top: 20px;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: #fff2b2;
+    box-shadow: 0 25px #ffefb2;
+}
+
+.rocket-fin {
+    position: absolute;
+    bottom: 0;
+    width: 13px;
+    height: 24px;
+    background: #b84320;
+}
+
+.rocket-fin.left {
+    left: -10px;
+    clip-path: polygon(100% 0, 100% 100%, 0 100%);
+}
+
+.rocket-fin.right {
+    right: -10px;
+    clip-path: polygon(0 0, 100% 100%, 0 100%);
+}
+
+.rocket-stick {
+    position: absolute;
+    bottom: -52px;
+    left: 11px;
+    width: 3px;
+    height: 55px;
+    background: #d4a05a;
+}
+
+.rocket-fire {
+    position: absolute;
+    top: 78px;
+    left: 21px;
+    width: 14px;
+    height: 32px;
+    background: linear-gradient(#fff9bd, #ffb323, #f04412, transparent);
+    border-radius: 50%;
+    filter: blur(4px);
+    animation: flame .12s infinite alternate;
+}
+
+.rocket-trail {
+    position: absolute;
+    top: 100px;
+    left: 27px;
+    width: 2px;
+    height: 90px;
+    background: linear-gradient(transparent, #ffca50, transparent);
+    box-shadow: 0 0 15px #ffb52c;
+}
+
+@keyframes flame {
+    from { transform: scaleY(.7); opacity: .7; }
+    to { transform: scaleY(1.4); opacity: 1; }
+}
+
+#rocket.launch {
+    opacity: 1;
+    animation: rocketLaunch 2.7s cubic-bezier(.35,.05,.7,.3) forwards;
+}
+
+@keyframes rocketLaunch {
+    0% {
+        bottom: -150px;
+        transform: translateX(-50%) rotate(-8deg);
+    }
+    100% {
+        bottom: 130vh;
+        transform: translateX(-50%) rotate(0deg);
+    }
+}
+
+/* SKIP */
+
+.skip {
+    position: absolute;
+    bottom: 25px;
+    right: 25px;
+    background: transparent;
+    color: #d8c5e7;
+    border: 1px solid #ffffff40;
+    padding: 9px 17px;
+    border-radius: 30px;
+    font-size: 10px;
+    letter-spacing: 2px;
+    cursor: pointer;
+}
+
+/* MAIN WEBSITE */
+
+#main {
+    min-height: 100vh;
+    height: 100vh;
+    overflow-y: auto;
+    position: relative;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 2s;
+    background:
+      radial-gradient(ellipse at 50% 90%, #57264d 0%, transparent 55%),
+      linear-gradient(180deg, #090512, #160c29 70%, #28102a);
+}
+
+#main.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 7%;
+    position: relative;
+    z-index: 4;
+}
+
+.logo {
+    font-family: 'Cinzel', serif;
+    letter-spacing: 3px;
+    color: var(--gold);
+    font-size: 16px;
+}
+
+.nav span {
+    font-size: 10px;
+    color: #d7c1e9;
+    letter-spacing: 2px;
+}
+
+.hero {
+    position: relative;
+    z-index: 2;
+    min-height: 75vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 45px 20px 60px;
+}
+
+.eyebrow {
+    font-size: 10px;
+    letter-spacing: 7px;
+    color: var(--gold);
+    animation: fadeUp 1.5s both;
+}
+
+.hero h1 {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(42px, 10vw, 95px);
+    line-height: 1.2;
+    margin: 24px 0;
+    background: linear-gradient(120deg, #fff4c6, #ffc24b, #fff0a6);
+    color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+    filter: drop-shadow(0 0 20px #ffb52c44);
+    animation: fadeUp 2s both;
+}
+
+.hero h2 {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(17px, 4vw, 28px);
+    font-weight: 400;
+    letter-spacing: 4px;
+    color: #f0d7ff;
+    animation: fadeUp 2.5s both;
+}
+
+.hero p {
+    max-width: 520px;
+    line-height: 2;
+    font-size: 13px;
+    color: #c9b7d7;
+    margin-top: 25px;
+    animation: fadeUp 3s both;
+}
+
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(35px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* DIYAS */
+
+.diya-area {
+    margin: 38px 0 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 45px;
+}
+
+.diya {
+    font-size: 53px;
+    animation: diyaGlow 2s infinite alternate;
+    filter: drop-shadow(0 0 15px #ffac35);
+}
+
+@keyframes diyaGlow {
+    from { transform: scale(.95); filter: drop-shadow(0 0 10px orange); }
+    to { transform: scale(1.1); filter: drop-shadow(0 0 35px gold); }
+}
+
+/* BUTTONS */
+
+.actions {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 35px;
+    animation: fadeUp 3.5s both;
+}
+
+.gold-btn {
+    border: none;
+    padding: 14px 25px;
+    border-radius: 40px;
+    color: #29142d;
+    background: linear-gradient(120deg, #fff0ac, #ffb633);
+    cursor: pointer;
+    font-size: 11px;
+    letter-spacing: 1px;
+    font-weight: 600;
+    transition: .3s;
+}
+
+.gold-btn:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 0 25px #ffbd55;
+}
+
+.outline-btn {
+    padding: 13px 25px;
+    background: transparent;
+    border: 1px solid #d9ad65;
+    color: #ffe2a0;
+    border-radius: 40px;
+    cursor: pointer;
+    font-size: 11px;
+    letter-spacing: 1px;
+    transition: .3s;
+}
+
+.outline-btn:hover {
+    background: #ffffff12;
+}
+
+/* WISHES */
+
+.wishes {
+    width: min(90%, 500px);
+    margin: 15px auto 50px;
+    padding: 30px 25px;
+    border: 1px solid #d5a95755;
+    background: #ffffff09;
+    backdrop-filter: blur(12px);
+    border-radius: 20px;
+    text-align: center;
+}
+
+.wishes h3 {
+    font-family: 'Cinzel', serif;
+    color: var(--gold);
+    font-size: 19px;
+    margin-bottom: 15px;
+}
+
+.wishes p {
+    color: #cdbbda;
+    font-size: 12px;
+    line-height: 2;
+}
+
+.bottom {
+    text-align: center;
+    padding: 15px 10px 30px;
+    color: #a38baa;
+    letter-spacing: 3px;
+    font-size: 9px;
+}
+
+/* FLOATING SPARKLES */
+
+.sparkle {
+    position: fixed;
+    bottom: -30px;
+    z-index: 3;
+    pointer-events: none;
+    animation: float 8s linear forwards;
+}
+
+@keyframes float {
+    to {
+        transform: translateY(-110vh) rotate(400deg);
+        opacity: 0;
+    }
+}
+
+/* MOBILE */
+
+@media(max-width:500px) {
+    .nav { padding: 20px 5%; }
+    .nav span { font-size: 8px; }
+    .diya-area { gap: 25px; }
+    .diya { font-size: 43px; }
+    .hero p { font-size: 12px; }
+}
+</style>
+</head>
+
+<body>
+
+<canvas id="sky"></canvas>
+
+<!-- CINEMATIC INTRO -->
+
+<section id="intro">
+
+    <div class="intro-stars"></div>
+
+    <div class="creator-credit">
+        <span>AN EXCLUSIVE CELEBRATION EXPERIENCE</span>
+        <h2>MADE BY</h2>
+        <h1>SAMPREET SINGH</h1>
+        <div class="credit-line"></div>
+    </div>
+
+    <div class="intro-content">
+
+        <div class="intro-label">✦ AN EVENING OF MAGIC ✦</div>
+
+        <div id="countdown">3</div>
+
+        <div id="introText">
+            SOMETHING MAGICAL IS COMING...
+        </div>
+
+        <button class="start-btn" id="startButton"
+                onclick="startExperience()">
+            BEGIN THE MAGIC ✨
+        </button>
+
+    </div>
+
+    <!-- CSS DIWALI ROCKET -->
+
+    <div id="rocket">
+        <div class="rocket-trail"></div>
+
+        <div class="rocket-body">
+            <div class="rocket-nose"></div>
+            <div class="rocket-fin left"></div>
+            <div class="rocket-fin right"></div>
+            <div class="rocket-stick"></div>
+        </div>
+
+        <div class="rocket-fire"></div>
+    </div>
+
+    <button class="skip" onclick="revealMain()">SKIP INTRO →</button>
+
+</section>
+
+
+<!-- MAIN DIWALI WEBSITE -->
+
+<main id="main">
+
+    <nav class="nav">
+        <div class="logo">दीपावली.</div>
+        <span>THE FESTIVAL OF LIGHTS ✦</span>
+    </nav>
+
+    <section class="hero">
+
+        <div class="eyebrow">
+            ✦ A NIGHT OF LIGHT, LOVE & MAGIC ✦
+        </div>
+
+        <h1>Happy<br>Diwali</h1>
+
+        <h2>Let Your World Shine</h2>
+
+        <p>
+            May every diya illuminate your path,
+            every sparkle bring a smile,
+            and every moment fill your life
+            with endless happiness and prosperity.
+        </p>
+
+        <div class="diya-area">
+            <div class="diya">🪔</div>
+            <div class="diya">✨</div>
+            <div class="diya">🪔</div>
+        </div>
+
+        <div class="actions">
+
+            <button class="gold-btn" onclick="celebrate()">
+                🎆 LIGHT UP THE SKY
+            </button>
+
+            <button class="outline-btn" onclick="replayIntro()">
+                ↻ REPLAY EXPERIENCE
+            </button>
+
+        </div>
+
+    </section>
+
+    <section class="wishes">
+
+        <h3>A Little Wish For You</h3>
+
+        <p>
+            Let the light of Diwali guide you towards
+            beautiful beginnings. May your dreams grow,
+            your efforts shine, and your days be filled
+            with peace, success and happiness.
+        </p>
+
+    </section>
+
+    <div class="bottom">
+        MADE WITH ✦ LIGHT & LOVE ✦ HAPPY DIWALI
+        <br><br>
+        CREATED BY SAMPREET SINGH
+    </div>
+
+</main>
+
+
+<script>
+
+/* FIREWORKS ENGINE */
+
+const canvas = document.getElementById("sky");
+const ctx = canvas.getContext("2d");
+
+let W, H;
+let particles = [];
+let animationRunning = false;
+let fireworkFrame = null;
+
+function resize() {
+    W = canvas.width = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+}
+
+window.addEventListener("resize", resize);
+resize();
+
+class Particle {
+
+    constructor(x, y, color) {
+        this.x = x;
+        this.y = y;
+        this.color = color;
+
+        const angle = Math.random() * Math.PI * 2;
+        const speed = Math.random() * 5 + 1.5;
+
+        this.vx = Math.cos(angle) * speed;
+        this.vy = Math.sin(angle) * speed;
+
+        this.alpha = 1;
+        this.size = Math.random() * 2.8 + 1;
+        this.gravity = 0.045;
+        this.decay = Math.random() * .012 + .007;
+    }
+
+    update() {
+        this.x += this.vx;
+        this.y += this.vy;
+        this.vy += this.gravity;
+        this.vx *= .985;
+        this.alpha -= this.decay;
+    }
+
+    draw() {
+        ctx.globalAlpha = Math.max(0, this.alpha);
+        ctx.fillStyle = this.color;
+        ctx.shadowBlur = 12;
+        ctx.shadowColor = this.color;
+
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.shadowBlur = 0;
+        ctx.globalAlpha = 1;
+    }
+}
+
+const colors = [
+    "#ffd166",
+    "#ffae35",
+    "#fff4c2",
+    "#e5a6ff",
+    "#ff70bc",
+    "#ffffff"
+];
+
+function burst(x, y) {
+
+    const color = colors[Math.floor(Math.random() * colors.length)];
+
+    for (let i = 0; i < 100; i++) {
+        particles.push(new Particle(x, y, color));
+    }
+}
+
+function animateFireworks() {
+
+    if (!animationRunning) return;
+
+    ctx.clearRect(0, 0, W, H);
+
+    particles.forEach(p => {
+        p.update();
+        p.draw();
+    });
+
+    particles = particles.filter(p => p.alpha > 0);
+
+    fireworkFrame = requestAnimationFrame(animateFireworks);
+}
+
+function launchFirework() {
+
+    const x = W * (.15 + Math.random() * .7);
+    const y = H * (.15 + Math.random() * .45);
+
+    burst(x, y);
+}
+
+
+/* COUNTDOWN */
+
+let sequenceTimeouts = [];
+let started = false;
+
+function clearSequence() {
+    sequenceTimeouts.forEach(clearTimeout);
+    sequenceTimeouts = [];
+}
+
+function startExperience() {
+
+    if (started) return;
+
+    started = true;
+
+    document.getElementById("startButton").style.display = "none";
+
+    const count = document.getElementById("countdown");
+    const introText = document.getElementById("introText");
+
+    const steps = ["3", "2", "1", "GO!"];
+
+    steps.forEach((number, index) => {
+
+        const timer = setTimeout(() => {
+
+            count.classList.remove("show");
+            void count.offsetWidth;
+
+            count.innerText = number;
+            count.classList.add("show");
+
+            introText.innerText =
+                index === 3
+                ? "HERE COMES THE MAGIC..."
+                : "GET READY FOR THE CELEBRATION";
+
+        }, 1000 + index * 1000);
+
+        sequenceTimeouts.push(timer);
+
+    });
+
+    const launchTimer = setTimeout(() => {
+        document.getElementById("rocket").classList.add("launch");
+    }, 5200);
+
+    sequenceTimeouts.push(launchTimer);
+
+    const revealTimer = setTimeout(() => {
+
+        launchFirework();
+        setTimeout(launchFirework, 250);
+        setTimeout(launchFirework, 500);
+
+        revealMain();
+
+    }, 7800);
+
+    sequenceTimeouts.push(revealTimer);
+}
+
+
+/* REVEAL MAIN PAGE */
+
+function revealMain() {
+
+    clearSequence();
+    started = false;
+
+    document.getElementById("intro").classList.add("hide");
+    document.getElementById("main").classList.add("visible");
+
+    document.getElementById("rocket").classList.remove("launch");
+
+    if (!animationRunning) {
+        animationRunning = true;
+        animateFireworks();
+    }
+
+    for (let i = 0; i < 7; i++) {
+        setTimeout(launchFirework, i * 350);
+    }
+
+    sparkleLoop();
+}
+
+
+/* CELEBRATION BUTTON */
+
+function celebrate() {
+
+    if (!animationRunning) {
+        animationRunning = true;
+        animateFireworks();
+    }
+
+    for (let i = 0; i < 12; i++) {
+        setTimeout(launchFirework, i * 250);
+    }
+}
+
+
+/* FLOATING SPARKLES */
+
+let sparkleStarted = false;
+
+function sparkleLoop() {
+
+    if (sparkleStarted) return;
+
+    sparkleStarted = true;
+
+    setInterval(() => {
+
+        if (!document.getElementById("main").classList.contains("visible"))
+            return;
+
+        const s = document.createElement("div");
+
+        const symbols = ["✦", "✨", "✧", "·", "⭐"];
+
+        s.className = "sparkle";
+
+        s.innerText = symbols[Math.floor(Math.random() * symbols.length)];
+
+        s.style.left = Math.random() * 100 + "vw";
+        s.style.fontSize = (10 + Math.random() * 17) + "px";
+        s.style.color = colors[Math.floor(Math.random() * colors.length)];
+        s.style.animationDuration = (5 + Math.random() * 5) + "s";
+
+        document.body.appendChild(s);
+
+        setTimeout(() => s.remove(), 11000);
+
+    }, 450);
+}
+
+
+/* REPLAY INTRO */
+
+function replayIntro() {
+
+    clearSequence();
+
+    started = false;
+    animationRunning = false;
+    particles = [];
+
+    if (fireworkFrame) {
+        cancelAnimationFrame(fireworkFrame);
+    }
+
+    ctx.clearRect(0, 0, W, H);
+
+    document.getElementById("main").classList.remove("visible");
+
+    document.getElementById("intro").classList.remove("hide");
+
+    document.getElementById("countdown").innerText = "3";
+    document.getElementById("countdown").classList.remove("show");
+
+    document.getElementById("introText").innerText =
+        "SOMETHING MAGICAL IS COMING...";
+
+    document.getElementById("startButton").style.display = "inline-block";
+}
+
+</script>
+
+</body>
+</html>
